@@ -1,2 +1,2 @@
 # Employee-Summary
-Generates employee summary in command line then displays them in html/css
+Generates an employee summary in the command line then displays it in html/css
