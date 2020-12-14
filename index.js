@@ -174,7 +174,7 @@ const writeScript = () => {
             if (value.again || value.again1 || !hasManager) {
               writeScript();
             } else {
-              console.log('you\'re done open the new "script.js"')
+              console.log('you\'re done open the new "templates/main.html"')
               return;
             }
           });
