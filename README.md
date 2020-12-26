@@ -24,6 +24,7 @@ You can run by simply downloading, moving to the correct directory in your comma
 
 This project can be used to quickly generate a formatted team roster by just typing a into the command line.
 
+See [this short clip](./employee-summary-recording.mov) for help.
 <a name="Visuals"></a>
 ## 3. Visuals
 ![Employee-summary in action](./employee-summary.png)
