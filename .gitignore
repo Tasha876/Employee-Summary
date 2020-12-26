@@ -107,4 +107,6 @@ dist
 script.js
 employee-summary-recording.mov
 employee-summary.mov
+generated-files/
+index2.js
 

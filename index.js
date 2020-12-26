@@ -2,28 +2,19 @@ const fs = require('fs');
 const fsPromises = fs.promises;
 const inquirer = require('inquirer');
 
-const Employee = require('./lib/Employee');
-const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern');
-const Manager = require('./lib/Manager');
+const html = require('./renderHtml');
 
-String.prototype.toTitleCase = function() {
-    // according to http://www.superheronation.com/2011/08/16/words-that-should-not-be-capitalized-in-titles/ & https://www.grammarcheck.net/capitalization-in-titles-101/
-    const doNotCap = ['a','an','the','for','and','nor','by','or', 'yet','so', 'at', 'from', 'of', 'on', 'to', 'with', 'is', 'in', 'into','off', 'onto', 'once', 'over','as','if','than','till', 'when', 'but','like','near','past','that','up','upon']
-    let words = this.valueOf().trim().toLowerCase();
-    words = words.split(' ');
-    const title = words.map((word, i) =>
-        doNotCap.includes(word) && i ?
-        word : word.charAt(0).toUpperCase() + word.substring(1)
-    ); return title.join(' ');
-  };
+const employees = [];
+
+const Employee = require('./lib/Employee.js');
+const Engineer = require('./lib/Engineer.js');
+const Intern = require('./lib/Intern.js');
+const Manager = require('./lib/Manager.js');
 
 let hasManager = false;
 
-let data = "";
-
 const writeScript = () => {
-
+    
     let questions = [
         {
             type: 'list',
@@ -103,21 +94,6 @@ const writeScript = () => {
             }
          }
     ]
-    
-    const readEmployeeTemplate = async (empType) => {
-
-        let file = `./templates/${empType}.html`;
-
-        const getData =  async () => {
-            const response =  await fsPromises.readFile(file, 'utf-8');
-            return response;
-        }
-
-        const d = await getData();
-
-        return d;
-
-    };
 
     const createEmployee = (employee, name, email, other) => {
         switch (employee) {
@@ -150,7 +126,7 @@ const writeScript = () => {
         } 
            return otherData;
     }
-
+    let template = fs.readFileSync('./templates/main.html','utf8');
     const enterAnotherEmployee = () =>{
         inquirer
           .prompt([
@@ -174,12 +150,32 @@ const writeScript = () => {
             if (value.again || value.again1 || !hasManager) {
               writeScript();
             } else {
-              console.log('you\'re done open the new "templates/main.html"')
-              return;
+              data = html.getEmployeeOfType(['Manager','Engineer','Intern'],employees)
+              template = template.replace(html.getPattern('main'), data)
+              let i = 0;
+              // this is the initial filename
+              let filename = 'myTeam';
+              const writeFile = (file) => {
+                // creates a directory name generated-files and if it already exists, opens for saving
+                fs.mkdirSync(`./generated-files/`, { recursive: true })
+                // saves file with filename 'filename'
+                fs.writeFile(`./generated-files/${file}.html`,template, { flag: "wx" }, (err) => {
+                    // if the filename already exists, add 1,2,3... to the end and try again with
+                    // that filename
+                    if (err) {
+                        writeFile(filename + ++i);
+                        // just letting the user know where they can find the new file.
+                    } else {
+                        console.log(`you\'re done open the new "generated-files/${file}.html"`)
+                    }
+                })
+              }; writeFile(filename); 
             }
           });
       };
-    
+
+    let data = '';
+
     inquirer
         .prompt(questions)
         .then(async (answers) => {
@@ -187,44 +183,14 @@ const writeScript = () => {
             let name = answers.name;
             let email = answers.email;
             let other = answers.other;
-            let template = await readEmployeeTemplate(employee);
             let newHireData = createEmployee(employee, name, email, other);
-
-            data += 
-`
-let newHireDiv${newHireData.id} = document.createElement('div');
-
-newHireDiv${newHireData.id}.id = 'employee${newHireData.id}';
-newHireDiv${newHireData.id}.innerHTML = \`${template}\`;
-
-document.querySelector('#team').appendChild(newHireDiv${newHireData.id});
-
-let id${newHireData.id} = document.querySelector('#employee${newHireData.id} .id');
-let name${newHireData.id} = document.querySelector('#employee${newHireData.id} .name');
-let email${newHireData.id} = document.querySelector('#employee${newHireData.id} .email a');
-email${newHireData.id}.href = 'mailto:${email}';
-email${newHireData.id}.target = '_blank';
-let other${newHireData.id} = document.querySelector('#employee${newHireData.id} .other');
-if ('${employee}' === 'engineer') other${newHireData.id} = document.querySelector('#employee${newHireData.id} .other a');
-'${employee}' === 'engineer' ? (other${newHireData.id}.href = 'https://github.com/${newHireData.github}', other${newHireData.id}.target = '_blank') : '';
-
-id${newHireData.id}.innerText = '${newHireData.id}';
-name${newHireData.id}.innerText = '${newHireData.name.toTitleCase()}';
-email${newHireData.id}.innerText = '${newHireData.email}';
-if (other${newHireData.id}) other${newHireData.id}.innerText = '${employee}' === 'intern' ? '${newHireData[setOtherData(employee)].toString().toTitleCase()}' : '${newHireData[setOtherData(employee)]}';
-`
-
-        enterAnotherEmployee();
-
-        }).then(() => {
-            fs.writeFile('script.js', data, (error) => {
-                if (error) throw error;
-            });
-        })
-
+            newHireData[setOtherData(employee)].toString()
+            employees.push(newHireData);
+            enterAnotherEmployee();
+        });
 }
+writeScript()
 
-writeScript();
 
 
 

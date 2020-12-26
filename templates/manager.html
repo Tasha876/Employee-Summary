@@ -1,18 +1,20 @@
-<div class="manager col-sm-6 col-md-4 p-1 w-100">
-    <div class="card rounded-0 shadow offset-md-0 p-0 m-0 h-100">
-        <div class="card-body">
-            <p class="position-absolute" style="right: 5px; top: 3px">ID: <span class="id">1</span></p>
-            <img src="https://www.shareicon.net/data/256x256/2016/01/17/704723_people_512x512.png" class="card-img-top img-thumbnail rounded-circle mb-3" alt="icon">
-            <h3 class="card-title text-center text-primary"><span class="name">Nat Grie</span></h3>
-            <h5 class="card-title text-muted text-center text-secondary"><span class="role">Manager</span></h5>
-            </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <span class="text-secondary">
-                <i class="fas fa-envelope"></i> Email: </span><span class="email"><a class="text-primary text-decoration-none" href="mailto:the.boss@fakemail.com">samantha.fry@fakemail.com</a></span></li>
-            <li class="list-group-item">
-            <span class="text-secondary"><i class="fas fa-briefcase"></i> Office: </span><span class="other">1</span></li>
-        </ul>
-        <div class="card-footer bg-primary rounded-0"></div>
+<div id = 'employee{{ id }}'>
+    <div class="manager col-sm-6 col-md-4 p-1 w-100">
+        <div class="card rounded-0 shadow offset-md-0 p-0 m-0 h-100">
+            <div class="card-body">
+                <p class="position-absolute" style="right: 5px; top: 3px">ID: {{ id }}</p>
+                <img src="https://www.shareicon.net/data/256x256/2016/01/17/704723_people_512x512.png" class="card-img-top img-thumbnail rounded-circle mb-3" alt="icon">
+                <h3 class="card-title text-center text-primary">{{ name }}</h3>
+                <h5 class="card-title text-muted text-center text-secondary"><span class="role">Manager</span></h5>
+                </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <span class="text-secondary">
+                    <i class="fas fa-envelope"></i> Email: </span><span class="email"><a class="text-primary text-decoration-none" href="mailto:{{ email }}">{{ email }}</a></span></li>
+                <li class="list-group-item">
+                <span class="text-secondary"><i class="fas fa-briefcase"></i> Office: </span>{{ other }}</li>
+            </ul>
+            <div class="card-footer bg-primary rounded-0"></div>
+        </div>
     </div>
 </div>
