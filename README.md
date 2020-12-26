@@ -56,4 +56,4 @@ Please direct all issues [here](https://github.com/Tasha876/employee-summary/iss
 <a name="License"></a>
 ## 8. License 
 
-This project is covered by the [MIT](License) license.
+This project is covered by the [MIT](LICENSE) license.
