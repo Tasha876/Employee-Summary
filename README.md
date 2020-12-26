@@ -10,7 +10,7 @@ Generates an employee summary in the command line then displays it in html/css.
 1. [ Visuals ](#Visuals)
 1.  [ Properties ](#Properties)
 1. [ Link to Repository ](#Link)
-1. [ Authors and Aknowledgement ](#Authors)
+1. [ Authors and Acknowledgement ](#Authors)
 1. [ Questions ](#Questions)
 1. [ License ](#License)
 
@@ -45,7 +45,7 @@ Link to the [GitHub repository](https://github.com/tasha876/employee-summary).
 <a name="Tests"></a>
 
 <a name="Authors"></a>
-## 6. Authors and Aknowledgement 
+## 6. Authors and Acknowledgement 
 
 This project was created entirely by [tasha876](https://github.com/tasha876) with inspiration from the great people at the [UofT Coding Bootcamp](https://bootcamp.learn.utoronto.ca/)
 <a name="Questions"></a>
