@@ -35,7 +35,7 @@ This project can be used to quickly generate a formatted team roster by just typ
 * It generates employee summaries quickly using the command line.
 * It saves the generated files in the 'generated-files' directory.
 * It does not overwrite files, so you can have multiple employee rosters.
-* It is styled, so the roster can look attactive as well as convey information.
+* It is styled, so the roster can look attractive as well as convey information.
 
 <a name="Link"></a>
 ## 5. Link to the Repository 
