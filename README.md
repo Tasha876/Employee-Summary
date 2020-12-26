@@ -33,7 +33,7 @@ This project can be used to quickly generate a formatted team roster by just typ
 ## 4. Properties 
 
 * It generates employee summaries quickly using the command line.
-* It saves the generated files in the 'generated_files' directory.
+* It saves the generated files in the 'generated-files' directory.
 * It does not overwrite files, so you can have multiple employee rosters.
 * It is styled, so the roster can look attactive as well as convey information.
 
@@ -47,7 +47,7 @@ Link to the [GitHub repository](https://github.com/tasha876/employee-summary).
 <a name="Authors"></a>
 ## 6. Authors and Acknowledgement 
 
-This project was created entirely by [tasha876](https://github.com/tasha876) with inspiration from the great people at the [UofT Coding Bootcamp](https://bootcamp.learn.utoronto.ca/)
+This project was created entirely by [tasha876](https://github.com/tasha876) with inspiration from the great people at the [UofT Coding Bootcamp](https://bootcamp.learn.utoronto.ca/).
 <a name="Questions"></a>
 ## 7. Issues 
 
