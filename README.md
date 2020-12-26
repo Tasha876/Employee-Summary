@@ -11,7 +11,7 @@ Generates an employee summary in the command line then displays it in html/css.
 1.  [ Properties ](#Properties)
 1. [ Link to Repository ](#Link)
 1. [ Authors and Acknowledgement ](#Authors)
-1. [ Questions ](#Questions)
+1. [ Issues ](#Questions)
 1. [ License ](#License)
 
 <a name="Install"></a>
